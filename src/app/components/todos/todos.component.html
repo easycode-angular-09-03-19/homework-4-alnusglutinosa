@@ -1,0 +1,32 @@
+<div class="container">
+  <h2 class="mb-4 mt-1">
+    My todos
+  </h2>
+</div>
+
+<app-form-task (addInfo)="onAddItem($event)"></app-form-task>
+
+<div class="container">
+  <div class="list-group-item d-flex flex-column justify-content-center flex-md-row">
+    <h3>
+      Список задач: <i *ngIf="todos.length">(осталось {{ getOpenTask().length }} из {{ todos.length }})</i>
+    </h3>
+    <button
+      *ngIf="todos.length"
+      class="ml-auto btn btn-outline-success btn-sm"
+      (click)="endAllTask()"
+    >
+      Завершить все
+    </button>
+  </div>
+
+  <ng-container *ngFor="let todoItem of todos">
+    <div class="list-group">
+      <app-todo-item
+        (outputInfo)="onOutputEvent($event)"
+        (deleteInfo)="onDeleteItem($event)"
+        [todoItem]="todoItem"
+      ></app-todo-item>
+    </div>
+  </ng-container>
+</div>
