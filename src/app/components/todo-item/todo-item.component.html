@@ -1,0 +1,13 @@
+
+<div class="list-group-item d-flex flex-column justify-content-center flex-md-row">
+  <div class="justify-content-center" [ngClass]="{'ready': todoItem.complete}">{{ todoItem.id }}) {{ todoItem.text }}</div>
+  <div class="ml-auto">
+    <button class="ml-auto mr-2 btn btn-sm" 
+      [ngClass]="{'btn-outline-success': todoItem.complete === false, 'btn-outline-secondary': todoItem.complete }"
+      (click)="switchTask()">
+      {{ todoItem.complete ? 'Не готово' : 'Готово'}}
+    </button>
+
+    <app-popup-confirm (confirmInfo)="onPopupOpen($event)"></app-popup-confirm> 
+  </div>
+</div>
